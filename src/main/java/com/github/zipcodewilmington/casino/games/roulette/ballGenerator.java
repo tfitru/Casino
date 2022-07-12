@@ -14,7 +14,7 @@ public class ballGenerator extends rouletteBall {
         return results;
     }
 
-    private String colorResult(int numLandedOn){
+    public String colorResult(int numLandedOn){
         String color;
         if(numLandedOn == 0)
             color = ("green" + numLandedOn);
