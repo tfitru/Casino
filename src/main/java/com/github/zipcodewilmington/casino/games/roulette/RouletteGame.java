@@ -61,7 +61,6 @@ public class RouletteGame extends CasinoAccountManager implements GameInterface 
 
         @Override
         public void remove(PlayerInterface player) {
-            gambler.get(0).getArcadeAccount().setBalance(this.balance);
             Casino c = new Casino(player);
             c.run();
         }
