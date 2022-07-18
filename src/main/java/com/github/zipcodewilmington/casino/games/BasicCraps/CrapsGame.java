@@ -109,11 +109,6 @@ public class CrapsGame extends RandomPlayerBots implements GamblerGameInterface{
         }
     }
 
-    @Override
-    public void setBet() {
-
-
-    }
 
     public Integer poolBets(Integer balance, Integer balanceFromOthers) {
 
