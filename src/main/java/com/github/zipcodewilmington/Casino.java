@@ -23,11 +23,14 @@ import com.github.zipcodewilmington.utils.IOConsole;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by leon on 7/21/2020.
  */
 public class Casino extends CasinoAccountManager implements Runnable {
+
 
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
     CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
@@ -36,6 +39,7 @@ public class Casino extends CasinoAccountManager implements Runnable {
     List<PlayerInterface> casinoList = new ArrayList<>();
     boolean quit = true;
     CasinoAccount casinoAccount;
+
 
     public Casino(PlayerInterface player) {
         this.casinoList.add(player);
@@ -98,6 +102,7 @@ public class Casino extends CasinoAccountManager implements Runnable {
                 Integer accountBalance = console.getIntegerInput("Enter how much you want to deposit into your account");
 
                 this.casinoAccount = casinoAccountManager.createAccount(accountName, accountPassword, accountBalance);
+
             } else if (gameInput.equalsIgnoreCase("select-game")) {
                 String gameSelection = getGameSelectionInput();
                 if (gameSelection.equalsIgnoreCase("SLOTS")) {
@@ -146,6 +151,9 @@ public class Casino extends CasinoAccountManager implements Runnable {
                 } else {
                     console.getStringInput("Please select a game to play");
                 }
+            } else if(gameInput.equalsIgnoreCase("login")){
+                String accountName = console.getStringInput("Enter the name for your account:");
+                String accountPassword = console.getStringInput("Enter the password for your account");
             }
     }
 
@@ -172,6 +180,7 @@ public class Casino extends CasinoAccountManager implements Runnable {
             System.exit(0);
         }
     }
+
 
 
 
