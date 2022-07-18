@@ -1,15 +1,16 @@
 package com.github.zipcodewilmington.casino;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CasinoAccountManagarPractice {
     public List<CasinoAccountPractice> casAcc = new ArrayList<>();
     private Integer balance;
+    String userName, passWord;
+    Integer bal;
 
     private File newFile = new File("Login2.txt");
 
@@ -66,6 +67,9 @@ public class CasinoAccountManagarPractice {
         return this.casAcc;
     }
 
+
+
+
     public void writeToFile(){
         if(newFile.length() == 0) {
             try{
@@ -82,6 +86,37 @@ public class CasinoAccountManagarPractice {
             System.out.println("Wrong");
         }
         }
+
+
+
+    void readFile() {
+        try{
+            FileReader fr = new FileReader(newFile);
+        } catch (FileNotFoundException ex){
+            try {
+                FileWriter fw = new FileWriter(newFile);
+            } catch (IOException ex1){
+                Logger.getLogger(CasinoAccountManager.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+    }
+
+    void CheckData(String user, String pwd) {
+        try {
+            RandomAccessFile raf = new RandomAccessFile(newFile+"\\Login2.txt", "rw");
+            String line = raf.readLine();
+            userName = line.substring(7);
+            passWord = raf.readLine().substring(7);
+            if(user.equals(userName) & pwd.equals(passWord)){
+                System.out.println("Password matched, welcome " + user);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CasinoAccountManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     }
 

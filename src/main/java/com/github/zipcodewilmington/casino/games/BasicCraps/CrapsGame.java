@@ -8,7 +8,9 @@ import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.util.List;
 
-public class CrapsGame extends CasinoAccountManager implements GamblerGameInterface{
+public class CrapsGame extends RandomPlayerBots implements GamblerGameInterface{
+
+
 
     private final IOConsole console = new IOConsole(AnsiColor.GREEN);
 
@@ -47,6 +49,26 @@ public class CrapsGame extends CasinoAccountManager implements GamblerGameInterf
         boolean quit = true;
         while (quit) {
             Integer playerBet = console.getIntegerInput("Enter your bet, minimum bet $500");
+            // Ask the player for the bet and all the bots make there bets
+            // Bets will match the players bet
+            // Ask player to guess the number for dice sum
+            // if the result is 7 or 11, shooter and other players who sided with shooter will win
+                // Win method()
+            // if the result is 2,3,12 shooter and other players in favour of shooter lose
+                // Lose method()
+            // A point is made if number other than ones mentioned above is rolled
+                // ArrayList to hold the point roll
+            // Dice rolls again and this time shooter has to match point number without rolling 7
+            // if shooter roll matches the ArrayList value
+            // Win method()
+            // Shooter loses when he rolls a 7 before hitting the point
+            // Lose method()
+            // If point is rolled shooter wins
+            Integer playerBet1 = console.getIntegerInput("Press 1 for Pass \n" +
+                    "or 2 for Don't Pass");
+            //If player chooses pass, choose the number value you think it will land on
+            // if player is correct,
+            //
             boolean playerBetUptake = true;
 
             if(playerBet>=500) {
@@ -93,6 +115,16 @@ public class CrapsGame extends CasinoAccountManager implements GamblerGameInterf
 
     }
 
+    public Integer poolBets(Integer balance, Integer balanceFromOthers) {
+
+        return null;
+    }
+
+
+    public void win() {
+        System.out.println("Player wins");
+//        this.balance+=winnings;
+    }
 
 
 

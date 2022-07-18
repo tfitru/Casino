@@ -10,8 +10,6 @@ public interface GamblerGameInterface {
 
     void run();
 
-    void setBet();
-
 
 
 }
