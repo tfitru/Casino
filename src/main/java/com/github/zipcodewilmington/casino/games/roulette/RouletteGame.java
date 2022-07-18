@@ -159,7 +159,6 @@ public class RouletteGame extends CasinoAccountManager implements GameInterface 
     }
 
     public void printSummary() {
-        System.out.println("Welcome to Roulette!");
         System.out.println("Below is the pay out of your desired option.");
         System.out.println("+----------------------------------------------------+");
         System.out.println("| Bet              | Payout          | Probability   |");
