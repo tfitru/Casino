@@ -3,31 +3,17 @@ package testRoulette;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.roulette.BallNumberGenerator;
 import com.github.zipcodewilmington.casino.games.roulette.BallNumberGenerator;
+import com.github.zipcodewilmington.casino.games.roulette.RouletteBall;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 
-public class rouletteBallTest {
-    private BallNumberGenerator testRouletteBall;
+public class RouletteBallTest {
+    private RouletteBall testRouletteBall;
 
     @Before
     public void setUp(){
-        testRouletteBall = new BallNumberGenerator() {
-            @Override
-            public void add(PlayerInterface player) {
-
-            }
-
-            @Override
-            public void remove(PlayerInterface player) {
-
-            }
-
-            @Override
-            public void run() {
-
-            }
-        };
+        testRouletteBall = new RouletteBall();
     }
 
     @Test

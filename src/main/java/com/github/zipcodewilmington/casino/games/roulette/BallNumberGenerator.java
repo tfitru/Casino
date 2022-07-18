@@ -3,7 +3,7 @@ package com.github.zipcodewilmington.casino.games.roulette;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 
 import java.util.Random;
-public abstract class BallNumberGenerator extends RouletteBall{
+public  class BallNumberGenerator extends RouletteBall {
 
 
     BallNumberGenerator(int number, String color, boolean even) {
@@ -14,7 +14,7 @@ public abstract class BallNumberGenerator extends RouletteBall{
         super();
     }
 
-    public RouletteBall generator(){
+    public RouletteBall generator() {
 
         RouletteBall results = new RouletteBall();
 
@@ -30,12 +30,12 @@ public abstract class BallNumberGenerator extends RouletteBall{
         return results;
     }
 
-    public String colorResult(int numLandedOn){
+    public String colorResult(int numLandedOn) {
         String color;
-        if(numLandedOn == 0)
+        if (numLandedOn == 0)
             color = ("Green " + numLandedOn + "\n");
-        else if(numLandedOn == 37) //37 --> '00'
-            color = ("Green " + numLandedOn + "\n");
+        else if (numLandedOn == 37) //37 --> '00'
+            color = ("Green 00");
         else if (numLandedOn % 2 == 0)
             color = ("Black " + numLandedOn + "\n");
         else
@@ -43,22 +43,17 @@ public abstract class BallNumberGenerator extends RouletteBall{
         return color;
     }
 
-    public boolean evenOrOdd(int numLandedOn){
+    public boolean evenOrOdd(int numLandedOn) {
         boolean even = false;
-        if(numLandedOn == 0)
+        if (numLandedOn == 0)
             even = true;
-        else if(numLandedOn == 37) //37 --> '00'
+        else if (numLandedOn == 37) //37 --> '00'
             even = true;
-        else if(numLandedOn % 2 == 0)
+        else if (numLandedOn % 2 == 0)
             even = true;
         else
             even = false;
         return even;
     }
 
-    public abstract void add(PlayerInterface player);
-
-    public abstract void remove(PlayerInterface player);
-
-    public abstract void run();
 }
