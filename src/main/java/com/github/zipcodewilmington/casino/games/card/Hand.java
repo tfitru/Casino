@@ -16,17 +16,13 @@ public class Hand {
     }
 
     public void emptyHand() {
-        for (int i = 0; i < 10; i++) {
-            this.hand.set(i, null);
-        }
-//            return (this.getHandSum() <= 21);
+        this.hand = new ArrayList<Card>();
     }
 
     public void addCard (Card aCard){
-        if (this.numOfCards < 10) {
+        if (this.hand.size() < 10) {
 
             this.hand.add(aCard);
-            numOfCards++;
         } else {
             System.out.println(this.printHandLimitMessage());
         }
@@ -44,7 +40,7 @@ public class Hand {
         int cardNum;
         int numAces = 0;
 
-        for (int i = 0; i < this.numOfCards; i++) {
+        for (int i = 0; i < this.hand.size(); i++) {
             cardNum = this.hand.get(i).getValue();
 
             if (cardNum == 1) {
@@ -88,7 +84,7 @@ public class Hand {
 
     public void printHand( boolean showFirstCard){
 //            System.out.println("%'s cards :\n", this.name);
-        for (int i = 0; i < this.numOfCards; i++) {
+        for (int i = 0; i < this.hand.size(); i++) {
             if (i == 0 && !showFirstCard) {
                 System.out.println("  [hidden]  ");
             } else {
