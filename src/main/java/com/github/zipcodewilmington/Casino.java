@@ -65,6 +65,7 @@ public class Casino extends CasinoAccountManager implements Runnable {
 
 
 
+
     private String getArcadeDashboardInput() {
         return console.getStringInput("Welcome to the Arcade Dashboard!" +
                 "\nFrom here, you can select any of the following options:\n" +

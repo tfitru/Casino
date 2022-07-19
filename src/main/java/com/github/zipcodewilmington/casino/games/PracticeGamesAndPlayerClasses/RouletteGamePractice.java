@@ -101,12 +101,13 @@ public class RouletteGamePractice extends BallNumberGenerator implements GameInt
 
 
     @Override
-    public void run() throws NumberFormatException {
+    public void run() /*throws NumberFormatException*/ {
 
         printSummary();
 
 
-        while (money > 0) {
+        while (balance > 0) {
+
             bet = console.getIntegerInput("Please input the amount you desire to bet.");
 
             betOption = console.getIntegerInput("Please select bet option");
@@ -115,6 +116,9 @@ public class RouletteGamePractice extends BallNumberGenerator implements GameInt
                 bet = console.getIntegerInput("INVALID! Please input the amount you desire to bet.");
                 betOption = console.getIntegerInput("Please select bet option");
             }
+//            if (bet == 38){
+//
+//            }
 
             if(betOption == 5){
                 selectNumber = console.getIntegerInput("Please select a number 00 or 0 - 36");
@@ -127,12 +131,12 @@ public class RouletteGamePractice extends BallNumberGenerator implements GameInt
 
             console.print("Results: " + ball.getColor());
 
-            console.print("Your bank account: " + money + "\n");
+            console.print("Your bank account: " + balance + "\n");
             roundCounter++;
 
             console.print("Rounds: " + roundCounter + "\n");
 
-            if (money <= 0)
+            if (balance <= 0)
                 break;
             if(bet == 0 && betOption != 0)
                 break;
