@@ -3,6 +3,8 @@ package CrapsGame;
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.games.BasicCraps.CrapsGame;
+import com.github.zipcodewilmington.casino.games.BasicCraps.CrapsPlayer;
+import com.github.zipcodewilmington.casino.games.BasicCraps.GamblerGameInterface;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,18 +14,31 @@ public class CrapsGameTest {
 
   private Integer balance;
 
-  @Test
-  public void gettingRobbedProbabability(){
-    this.balance = 500;
-    CasinoAccount x = new CasinoAccount(null, null, this.balance);
-    Random rand =  new Random(1);
-    Integer expected = 500;
+ @Test
+  public void loseMessageTest() {
+
+     // Given
+     CrapsGame crapsGame = new CrapsGame();
+     String expectedMessage = "Do better next time";
+
+
+
+     // When
+     String actualBalanceMessage = crapsGame.lose();
+
+
+
+     // Then
+     Assert.assertEquals(expectedMessage, actualBalanceMessage);
+
+
+ }
 
 
 
 
 
-  }
+
 
 
 

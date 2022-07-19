@@ -67,10 +67,9 @@ public class CrapsGame extends RandomPlayerBots implements GamblerGameInterface{
         }
     }
 
-    public void lose() {
+    public String lose() {
         System.out.println("Do better next time");
-
-
+        return "Do better next time";
     }
 
     public void quit() {
