@@ -22,6 +22,7 @@ import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,10 +33,9 @@ import java.util.logging.Logger;
 public class Casino extends CasinoAccountManager implements Runnable {
 
 
-    private final IOConsole console = new IOConsole(AnsiColor.BLUE);
+    private final IOConsole console = new IOConsole(AnsiColor.PURPLE);
     CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
-    private String name;
-    private Integer balance;
+
     List<PlayerInterface> casinoList = new ArrayList<>();
     boolean quit = true;
     CasinoAccount casinoAccount;
@@ -43,45 +43,33 @@ public class Casino extends CasinoAccountManager implements Runnable {
 
     public Casino(PlayerInterface player) {
         this.casinoList.add(player);
-
-        //        runNewAccount(player);
     }
 
     public Casino() {
 
     }
 
-    public void runNewAccount(PlayerInterface player){
-        while(quit) {
-            startGameReal();
-//            this.startGame();
-//            this.startGamePart1();
-        }
-    }
+
+
 
     @Override
     public void run() {
-//        if(getArcadeDashboardInput().equalsIgnoreCase("login")){
-//
-//        }
+
         if(!this.casinoList.isEmpty()){
             reRunGame(this.casinoList.get(0).getArcadeAccount());
         }
         while(quit) {
             startGameReal();
-//            this.startGame();
-//            this.startGamePart1();
         }
     }
 
 
-    public void readWriterFile() {
 
-    }
     private String getArcadeDashboardInput() {
         return console.getStringInput("Welcome to the Arcade Dashboard!" +
-                "\nFrom here, you can select any of the following options:" +
-                "\n\t[ create-account ], [ select-game ], [login/logout]");
+                "\nFrom here, you can select any of the following options:\n" +
+                "Please create an account before selecting a game." +
+                "\n\t[ create-account ], [ select-game ]");
     }
 
     private String getGameSelectionInput() {
@@ -92,10 +80,16 @@ public class Casino extends CasinoAccountManager implements Runnable {
                 .toString());
     }
 
+
+
     public void reRunGame(CasinoAccount casinoAccount) {
         this.casinoAccount = this.casinoList.get(0).getArcadeAccount();
-
-            String gameInput = getArcadeDashboardInput();
+        String gameInput = "";
+        try {
+            gameInput = getArcadeDashboardInput();
+        } catch (InputMismatchException e){
+            System.out.println("That is not a correct number");
+        }
             if(gameInput.equalsIgnoreCase("create-account")){
                 String accountName = console.getStringInput("Enter a name for your account:");
                 String accountPassword = console.getStringInput("Enter a password for your account");
@@ -108,7 +102,7 @@ public class Casino extends CasinoAccountManager implements Runnable {
                 if (gameSelection.equalsIgnoreCase("SLOTS")) {
                     this.play(new SlotsGame(), new SlotsPlayer(this.casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("BLACKJACK")) {
-//                            this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
+                            this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("ROULETTE")) {
                     this.play(new RouletteGame(), new RoulettePlayer(this.casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("NUMBERGUESS")) {
@@ -139,7 +133,7 @@ public class Casino extends CasinoAccountManager implements Runnable {
                 if (gameSelection.equalsIgnoreCase("SLOTS")) {
                     this.play(new SlotsGame(), new SlotsPlayer(this.casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("BLACKJACK")) {
-//                            this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
+                            this.play(new BlackjackGame(), new BlackjackPlayer(casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("ROULETTE")) {
                     this.play(new RouletteGame(), new RoulettePlayer(this.casinoAccount));
                 } else if (gameSelection.equalsIgnoreCase("NUMBERGUESS")) {
@@ -151,9 +145,6 @@ public class Casino extends CasinoAccountManager implements Runnable {
                 } else {
                     console.getStringInput("Please select a game to play");
                 }
-            } else if(gameInput.equalsIgnoreCase("login")){
-                String accountName = console.getStringInput("Enter the name for your account:");
-                String accountPassword = console.getStringInput("Enter the password for your account");
             }
     }
 
@@ -161,10 +152,6 @@ public class Casino extends CasinoAccountManager implements Runnable {
 
     public void play(Object gameObject, Object playerObject) {
         GameInterface game = (GameInterface)gameObject;
-//        for (PlayerInterface player : casAcc) {
-//            PlayerInterface player = (PlayerInterface)playerObject;
-//            game.add(player);
-//        }
         PlayerInterface player = (PlayerInterface)playerObject;
         game.add(player);
         game.run();
